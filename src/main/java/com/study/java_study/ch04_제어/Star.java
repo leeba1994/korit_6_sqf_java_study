@@ -78,9 +78,10 @@ public class Star {
 
 
             }
-          //  for (int k = 0; k < 5; k++){
-          //      System.out.print("*");
-          //  }
+            for (int j = 0; j < 4 ; j++) {
+                System.out.print("*");
+
+            }
 
 
 
