@@ -6,7 +6,8 @@ public class 조건문02 {
         String name = "이병안";       //값의 자료형이 String
         String phone = "01024804593";    //값의 자료형이 null
         // 공백도 리터럴이다
-        // == 실제데이터의 값 비교가 아니고 주소값 비교 이다
+        // == 실제데이터의 값 비교가 아니고 값의 주소값 비교 이다
+        //
 
         StringUtils stringUtils = new StringUtils();
 
