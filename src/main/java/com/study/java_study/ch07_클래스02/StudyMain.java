@@ -14,6 +14,12 @@ public class StudyMain {
         //a.num = 100;
         //a.num2 = 1000;
 
+        StudyB b = new StudyB();
+        //b.name = "이병안";   private String name;  외부클래스에서는 접근불가  내부클래스에서 접급가능
+        //b.age = 31;         private int age;
+        b.show();
+
+
 
 
 

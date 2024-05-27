@@ -54,6 +54,14 @@ public class BookArrayService {
 
                     break;
                 case "3":
+                    System.out.println("[도서 삭제]");
+                    System.out.print("삭제 할 도서의 이름: ");
+                    String removeName = scanner.nextLine();
+                    findIndex = bookArrayUtils.findIndexByBookName(booknames, removeName);
+                    if(findIndex == -1) {
+                        System.out.println("해당 이름의 도서는 존재하지 않습니다.");
+                        break;
+                    }
 
 
                     break;
