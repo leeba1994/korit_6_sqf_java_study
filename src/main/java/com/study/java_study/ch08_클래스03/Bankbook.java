@@ -1,9 +1,9 @@
 package com.study.java_study.ch08_클래스03;
 
 public class Bankbook {
-    private String accountnumber;
-    private String accountname;
-    private int balance;
+    private String accountnumber; //계좌번호
+    private String accountname; //계좌이름
+    private int balance; //잔액
 
     public Bankbook(String accountnumber, String accountname, int balance) {
         this.accountnumber = accountnumber;
