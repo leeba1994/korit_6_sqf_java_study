@@ -6,9 +6,12 @@ package com.study.java_study.ch09_클래스04;
 public class BookRepository {
     private int bookId;
     private BookEntity[] books;
+    private BookEntity[] deletedbooks;
 
     public BookRepository() { //BookRepository() 생성자 만듬
         books = new BookEntity[0];
+
+        deletedbooks = new BookEntity[0];
     }
 
     public int autoIncrementBookID() {
@@ -45,7 +48,7 @@ public class BookRepository {
     }
 
     private int getLastIndex() {
-        return books.length -1 ;
+        return books.length - 1;
     }
 
     public void saveBook(BookEntity book) { //book 도서 객체를 받아오면 saveBook 저장한다
@@ -61,7 +64,7 @@ public class BookRepository {
         // 기존 배열의 주소가 들어있는 books 변수에 새로운 배열의 주소를 대입한다.
         books = newBooks;
         */
-        
+
         // 배열 확장
         extendBooks();
 
@@ -70,14 +73,14 @@ public class BookRepository {
         books[getLastIndex()] = book;
     }
 
-    
+
     // 단건조회
     public BookEntity findBookByBookId(int bookId) {    //선형탐색알고리즘, 배열은 선형탐색으로한다
         BookEntity findBook = null;
-        
+
         //선형탐색(순차 탐색)
-        for(BookEntity book : books) {
-            if(book.getBookId() == bookId) {
+        for (BookEntity book : books) {
+            if (book.getBookId() == bookId) {
                 findBook = book;
                 break;
             }
@@ -88,10 +91,10 @@ public class BookRepository {
     // 단건조회
     public BookEntity findBookByBookName(String bookName) {
         BookEntity findBook = null;
-        
+
         //선형탐색
-        for(BookEntity book : books) {
-            if(book.getBookName().equals(bookName)) { //String 이라서 값내용의 비교 하기
+        for (BookEntity book : books) {
+            if (book.getBookName().equals(bookName)) { //String 이라서 값내용의 비교 하기
                 findBook = book;
                 break;
             }
@@ -106,7 +109,7 @@ public class BookRepository {
         switch (option) {               //contains() 해당문자열에 글자가 1개라도 포함되어있는지 비교
 
             case 1: // 통합검색
-                for(BookEntity book : books) {
+                for (BookEntity book : books) {
                     if (book.getBookName().contains(searchText)   //contains() 해당문자열에 글자가 1개라도 포함되어있는지 비교
                             || book.getAuthor().contains(searchText)
                             || book.getPublisher().contains(searchText)) {
@@ -115,27 +118,26 @@ public class BookRepository {
                 }
                 break;
             case 2: //도서명검색
-                for(BookEntity book : books) {
+                for (BookEntity book : books) {
                     if (book.getBookName().contains(searchText)) {
                         newArraySize++;
                     }
                 }
                 break;
             case 3: //저자명검색
-                for(BookEntity book : books) {
+                for (BookEntity book : books) {
                     if (book.getAuthor().contains(searchText)) {
                         newArraySize++;
                     }
                 }
                 break;
             case 4: //출판사명검색
-                for(BookEntity book : books) {
+                for (BookEntity book : books) {
                     if (book.getPublisher().contains(searchText)) {
                         newArraySize++;
                     }
                 }
-                    
-                
+
 
         }
         return newArraySize;
@@ -161,7 +163,7 @@ public class BookRepository {
         int i = 0;
         switch (option) {               //contains() 해당문자열에 글자가 1개라도 포함되어있는지 비교
             case 1: // 통합검색
-                for(BookEntity book : books) {
+                for (BookEntity book : books) {
                     if (book.getBookName().contains(searchText)   //contains() 해당문자열에 글자가 1개라도 포함되어있는지 비교
                             || book.getAuthor().contains(searchText)
                             || book.getPublisher().contains(searchText)) {
@@ -171,7 +173,7 @@ public class BookRepository {
                 }
                 break;
             case 2: //도서명검색
-                for(BookEntity book : books) {
+                for (BookEntity book : books) {
                     if (book.getBookName().contains(searchText)) {
                         searchBooks[i] = book;
                         i++;
@@ -179,7 +181,7 @@ public class BookRepository {
                 }
                 break;
             case 3: //저자명검색
-                for(BookEntity book : books) {
+                for (BookEntity book : books) {
                     if (book.getAuthor().contains(searchText)) {
                         searchBooks[i] = book;
                         i++;
@@ -187,7 +189,7 @@ public class BookRepository {
                 }
                 break;
             case 4: //출판사명검색
-                for(BookEntity book : books) {
+                for (BookEntity book : books) {
                     if (book.getPublisher().contains(searchText)) {
                         searchBooks[i] = book;
                         i++;
@@ -195,11 +197,54 @@ public class BookRepository {
                 }
 
 
-
         }
 
 
         return searchBooks;
+    }
+
+    private int IndexOfBookId(int bookId) {
+        int findIndex = -1;
+
+        for(int i = 0; i < books.length; i++) {
+            if(books[i].getBookId() == bookId) {
+                findIndex = i;
+                break;
+            }
+        }
+
+        return findIndex;
+    }
+
+
+
+
+
+    public void deleteBookByBookId(int bookId) {
+        int findIndex = IndexOfBookId(bookId);
+        BookEntity[] newBooks = new BookEntity[books.length - 1]; //newBooks 새 배열 생성 (books 배열의 -1 사이즈 만큼)
+        //BookEntity[] delBooks = new BookEntity[books.length + 1];
+        //int findIndex = -1;
+       /*
+       for(int i = 0; i < books.length; i++) {
+            if(books[i].getBookId() == bookId) {
+                findIndex = i;
+                break;
+            }
+            
+        }
+        */
+
+        for(int i = 0; i < newBooks.length; i++) {
+            if(i < findIndex) {
+                newBooks[i] = books[i];
+                continue;
+            }
+            newBooks[i] = books[i + 1];
+        }
+        books = newBooks;
+
+
     }
 
 }
