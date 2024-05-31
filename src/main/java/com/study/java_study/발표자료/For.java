@@ -5,8 +5,8 @@ import java.util.Scanner;   // Scanner 클래스를 임포트합니다.
 
 public class For {  // 클래스 선언
     public static void main(String[] args) {    // 메인 메서드 선언
-        Scanner scanner = new Scanner(System.in);   // 입력을 위한 Scanner 객체를 생성합니다.
         Random random = new Random();   // 랜덤 숫자 생성을 위한 Random 객체를 생성합니다.
+        Scanner scanner = new Scanner(System.in);   // 입력을 위한 Scanner 객체를 생성합니다.
         int answer = 0; // 정답 수를 저장할 변수입니다.
 
         int numberofproblems = 0;   // 사용자가 선택한 문제 수를 저장할 변수입니다
@@ -16,12 +16,21 @@ public class For {  // 클래스 선언
         for ( ; ; ) {
             System.out.println("문제 개수는 1 ~ 10 안에서 선택할수 있습니다."); // 사용자에게 문제 수를 선택하라는 메시지를 출력합니다.
             System.out.print("풀 문제 개수를 입력하세여 :");   // 사용자로부터 문제 수를 입력하라는 메시지를 출력합니다.
+
+            if(!scanner.hasNextInt()) {
+                System.out.println("숫자를 입력하세요");
+                System.out.println();
+                scanner.nextLine();
+                continue;
+            }
+
             numberofproblems = scanner.nextInt();   // 사용자로부터 입력을 받습니다.
             scanner.nextLine(); // 개행 문자를 소비합니다.
 
+
             // 문제 수 입력값의 유효성을 검사합니다.
             if(!(0 < numberofproblems && numberofproblems < 11)) {
-                System.out.println("문제 개수를 잘못 입력했습니다.");    // 잘못된 입력에 대한 오류 메시지를 출력합니다.
+               System.out.println("문제 개수를 잘못 입력했습니다.");    // 잘못된 입력에 대한 오류 메시지를 출력합니다.
                 System.out.println();
                 continue;   // 다시 사용자에게 문제 수를 입력하도록 루프를 재시작합니다.
             }
