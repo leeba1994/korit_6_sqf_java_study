@@ -5,5 +5,6 @@ public class AuthorityMain {
 
         System.out.println(Authority.DEFAULT_ROLE); //Authority.DEFAULT_ROLE
         //Authority.DEFAULT_ROLE = "aaa"; 상수라서 변경 불가
+
     }
 }

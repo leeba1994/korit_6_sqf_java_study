@@ -27,4 +27,10 @@ public interface Authority {        //Authority 권한
 
     }
 
+    static void printAuthority2() {     //default 일반메소드 생성시 지정
+        //Authority author Authority
+        System.out.println(DEFAULT_ROLE);
+
+    }
+
 }
