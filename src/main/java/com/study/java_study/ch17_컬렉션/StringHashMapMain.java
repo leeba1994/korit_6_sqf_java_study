@@ -33,7 +33,7 @@ public class StringHashMapMain {
         Map<String, String> lang2 = new HashMap<>();
         lang2.putAll(lang);
         System.out.println(lang2);
-       
+
         for(Map.Entry<String, String> entry : lang2.entrySet()) {
             System.out.println("key :" + entry.getKey());
             System.out.println("value :" + entry.getValue());
